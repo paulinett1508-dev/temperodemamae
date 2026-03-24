@@ -206,6 +206,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu();
 document.querySelectorAll('.nav-mobile a').forEach(a => a.addEventListener('click', closeMenu));
 ```
 
+### Quick Accessibility Checklist
+
+- [ ] Contraste mínimo 4.5:1 para texto normal — verificar com https://webaim.org/resources/contrastchecker/
+- [ ] Contraste mínimo 3:1 para texto grande e componentes UI
+- [ ] Skip link presente e funcional (Tab → link aparece no topo)
+- [ ] `:focus-visible` definido para todos os elementos interativos
+- [ ] `<nav aria-label="Navegação principal">` presente
+- [ ] `aria-hidden="true"` em todos os elementos decorativos
+- [ ] Emojis informativos com `role="img" aria-label="descrição"`
+- [ ] `prefers-reduced-motion` respeitado nas animações
+- [ ] Hamburger com `aria-expanded`, fecha com Escape e ao clicar âncora
+
 ---
 
 ## 5. Pré-deploy Checklist
