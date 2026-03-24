@@ -903,6 +903,25 @@
 
   .nav-mobile a:hover { color: var(--gold); }
 
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    html { scroll-behavior: auto; }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     nav { padding: 20px 32px; }
