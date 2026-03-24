@@ -813,6 +813,69 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 
+  /* ── HAMBURGER ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s ease;
+  }
+
+  .nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── NAV MOBILE MENU ── */
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.97);
+    z-index: 98;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-mobile.open { display: flex; }
+
+  .nav-mobile a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-mobile a:hover { color: var(--gold); }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     nav { padding: 20px 32px; }
@@ -829,6 +892,7 @@
   @media (max-width: 640px) {
     nav { padding: 16px 20px; }
     .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
     section { padding: 60px 20px; }
     .hero { padding: 80px 20px 60px; }
     .books-grid { grid-template-columns: 1fr; }
@@ -845,6 +909,17 @@
   <nav aria-label="Navegação principal">
     <span class="nav-brand">Arte dos Temperos</span>
     <ul class="nav-links">
+    <li><a href="#colecao">Coleção</a></li>
+    <li><a href="#conteudo">Conteúdo</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+  </ul>
+  <button class="nav-hamburger" aria-expanded="false" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-mobile">
+    <li><a href="#sobre">Sobre</a></li>
     <li><a href="#colecao">Coleção</a></li>
     <li><a href="#conteudo">Conteúdo</a></li>
     <li><a href="#depoimentos">Depoimentos</a></li>
@@ -1125,6 +1200,34 @@
 </footer>
 
 <script>
+  // Hamburger menu
+  const hamburger = document.querySelector('.nav-hamburger');
+  const mobileMenu = document.querySelector('.nav-mobile');
+
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Fechar menu');
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Abrir menu');
+  }
+
+  hamburger.addEventListener('click', () => {
+    hamburger.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  document.querySelectorAll('.nav-mobile a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
