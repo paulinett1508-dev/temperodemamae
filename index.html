@@ -83,6 +83,11 @@
     margin: 0;
   }
 
+  .gold-line--about      { margin-bottom: 28px; margin-top: 8px; }
+  .gold-line--collection { margin: 20px auto 24px; }
+  .gold-line--topics     { margin: 20px 0 24px; }
+  .gold-line--testi      { margin: 20px auto 0; }
+
   /* ── NAV ── */
   nav {
     position: fixed;
@@ -104,6 +109,8 @@
     text-transform: uppercase;
   }
 
+  a.nav-brand { text-decoration: none; }
+
   .nav-links {
     display: flex;
     gap: 36px;
@@ -121,6 +128,7 @@
   }
 
   .nav-links a:hover { color: var(--gold); }
+  .nav-links a.nav-active { color: var(--gold); }
 
   /* ── HERO ── */
   .hero {
@@ -953,7 +961,7 @@
 
 <header>
   <nav aria-label="Navegação principal">
-    <span class="nav-brand">Arte dos Temperos</span>
+    <a href="#" class="nav-brand" aria-label="Arte dos Temperos — início">Arte dos Temperos</a>
     <ul class="nav-links">
     <li><a href="#colecao">Coleção</a></li>
     <li><a href="#conteudo">Conteúdo</a></li>
@@ -1033,7 +1041,7 @@
       <h2 class="section-title">
         Do fogão à<br><em>independência financeira</em>
       </h2>
-      <div class="gold-line gold-line-left" style="margin-bottom: 28px; margin-top: 8px;"></div>
+      <div class="gold-line gold-line-left gold-line--about"></div>
       <p class="section-desc">
         Criada especialmente para mulheres que já sabem cozinhar bem e querem transformar esse talento em dinheiro de verdade. A coleção vai do básico ao avançado: receitas premiadas, técnicas profissionais, precificação inteligente e branding para sua marca.
       </p>
@@ -1054,7 +1062,7 @@
     <div class="collection-header reveal">
       <span class="section-eyebrow">Os 8 Volumes</span>
       <h2 class="section-title">A <em>Coleção Completa</em></h2>
-      <div class="gold-line" style="margin: 20px auto 24px;"></div>
+      <div class="gold-line gold-line--collection"></div>
       <p class="section-desc">
         Cada volume foi desenvolvido para cobrir um aspecto essencial do seu negócio artesanal.
       </p>
@@ -1125,7 +1133,7 @@
       <div class="topics-sticky reveal">
         <span class="section-eyebrow">O que você vai aprender</span>
         <h2 class="section-title">Tudo que você<br><em>precisa saber</em></h2>
-        <div class="gold-line gold-line-left" style="margin: 20px 0 24px;"></div>
+        <div class="gold-line gold-line-left gold-line--topics"></div>
         <p class="section-desc">
           Do preparo à venda — cada volume cobre um pilar do seu negócio artesanal de temperos.
         </p>
@@ -1172,7 +1180,7 @@
     <div class="testimonials-header reveal">
       <span class="section-eyebrow">Depoimentos</span>
       <h2 class="section-title">Mulheres que <em>transformaram</em> sua realidade</h2>
-      <div class="gold-line" style="margin: 20px auto 0;"></div>
+      <div class="gold-line gold-line--testi"></div>
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
@@ -1296,9 +1304,7 @@
       if (window.scrollY >= s.offsetTop - 120) current = s.id;
     });
     navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--gold)'
-        : 'var(--white-soft)';
+      a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current);
     });
   });
 </script>
