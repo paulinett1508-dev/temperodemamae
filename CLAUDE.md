@@ -81,20 +81,47 @@ temperodemamae/
 
 ---
 
-## Regras de Desenvolvimento
+## Gates de Qualidade
 
-### Sempre fazer
-- Manter paleta preto/dourado em todos os componentes novos
-- Usar `reveal` + IntersectionObserver para animações de entrada
-- Testar responsividade nos breakpoints: 640px, 1024px
-- Comentar seções com `/* ── NOME DA SEÇÃO ── */`
-- Manter grain overlay no `body::before`
+Todo componente novo e toda mudança no `index.html` deve passar pelos gates abaixo antes de entrar em produção. Gates 1–4 são obrigatórios. Gate 5 diferencia landing pages profissionais.
 
-### Nunca fazer
-- Usar frameworks pesados (React, Vue) — projeto é HTML estático
-- Usar cores fora da paleta sem aprovação
-- Quebrar o scroll suave entre seções
-- Remover as fontes Google (Cinzel, Cormorant Garamond, Lato)
+**Referência completa:** `docs/compliance/landing-page-compliance.md`
+
+### Gate 1 — Identidade Visual & Hierarquia
+- Paleta exclusiva: `--black`, `--gold`, `--gold-light`, `--white`, `--white-soft`
+- Fontes: `Cinzel` (títulos/labels), `Cormorant Garamond` (subtítulos/itálicos), `Lato` (corpo)
+- Cores **sempre** via `var(--token)` — nunca `#hex` ou `rgb()` direto no código
+- Grain overlay preservado no `body::before`
+- Animações de entrada com `.reveal` + IntersectionObserver
+- Scroll suave entre seções (`scroll-behavior: smooth`)
+- Hierarquia visual: o elemento mais importante tem maior peso visual
+
+### Gate 2 — Semântica & Governança CSS
+- Estrutura semântica: `<header>` → `<main id="conteudo-principal">` → `<footer>`
+- H1 único por página; H2/H3 em hierarquia sequencial
+- Zero `style=""` inline no HTML — verificar com `grep -n 'style="' index.html`
+- Zero `!important` sem comentário documentando o override
+- Todo `<section>` com `id` para âncoras de navegação
+
+### Gate 3 — Acessibilidade WCAG 2.1 AA
+- Skip link como primeiro elemento focável do `<body>`
+- `<nav aria-label="Navegação principal">`
+- `:focus-visible` definido e visível em todos os elementos interativos
+- `prefers-reduced-motion` respeitado em todas as animações e transições
+- `aria-hidden="true"` em todos os elementos puramente decorativos
+- Emojis informativos com `role="img" aria-label="descrição"`
+
+### Gate 4 — Responsividade & Mobile
+- Testar em 375px, 640px e 1024px antes de qualquer merge
+- Nav com fallback mobile funcional — jamais `display: none` sem menu substituto
+- Alvos de toque mínimo 44×44px (botões, links)
+- Nenhum elemento com largura fixa causando scroll horizontal
+
+### Gate 5 — SEO & Performance
+- `<meta name="description">`, `<link rel="canonical">` e Open Graph obrigatórios
+- `<link rel="preconnect">` para origens externas (fonts.googleapis.com, fonts.gstatic.com)
+- Schema JSON-LD (`Product` ou `Organization`) presente e válido
+- `loading="lazy"` em imagens below-the-fold quando presentes
 
 ---
 
