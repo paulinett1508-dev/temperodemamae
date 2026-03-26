@@ -3,149 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Base de conhecimento sobre temperos artesanais, molhos, técnicas de conservação, precificação e negócio caseiro. Guias práticos para quem vive de temperos.">
+<meta name="description" content="Base de conhecimento sobre temperos artesanais, molhos, técnicas de conservação, precificação e negócio caseiro. Guias práticos reunidos em um só lugar.">
 <title>Tempero de Mamãe — Base de Conhecimento</title>
-
-<!-- SEO -->
 <link rel="canonical" href="https://temperodemamae.vercel.app/">
-
-<!-- Open Graph -->
 <meta property="og:title" content="Tempero de Mamãe — Base de Conhecimento">
-<meta property="og:description" content="Guias práticos sobre temperos artesanais, molhos, conservação, precificação e como montar seu negócio caseiro.">
+<meta property="og:description" content="Guias práticos sobre temperos artesanais, molhos, conservação, precificação e negócio caseiro.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://temperodemamae.vercel.app/">
-
-<!-- Schema JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Tempero de Mamãe",
   "description": "Base de conhecimento sobre temperos artesanais, molhos, técnicas de conservação e negócio caseiro.",
-  "url": "https://temperodemamae.vercel.app/",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Tempero de Mamãe"
-  }
+  "url": "https://temperodemamae.vercel.app/"
 }
 </script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
+  /* ════════════════════════════════════════
+     TOKENS
+  ════════════════════════════════════════ */
   :root {
-    --black:      #0a0a0a;
-    --black-mid:  #111111;
-    --black-soft: #1a1a1a;
-    --black-card: #161616;
-    --gold:       #c9a84c;
-    --gold-light: #e8c97a;
-    --gold-pale:  #f5e6b8;
-    --gold-dim:   #8a6d2a;
-    --white:      #f5f0e8;
-    --white-soft: #d4c9b0;
-    --cream:      #ede4d0;
+    --cream:       #faf6ef;
+    --cream-dark:  #f0e9dc;
+    --cream-mid:   #e8dece;
+    --parchment:   #ede3d3;
+    --ink:         #1e1509;
+    --ink-soft:    #3d2e18;
+    --ink-muted:   #6b5740;
+    --ink-light:   #9c8468;
+    --gold:        #b8902e;
+    --gold-bright: #d4a843;
+    --gold-pale:   #e8c97a;
+    --gold-faint:  #f3e4b8;
+    --gold-line:   rgba(184,144,46,0.25);
+    --white:       #ffffff;
+    --shadow-sm:   0 2px 12px rgba(30,21,9,0.08);
+    --shadow-md:   0 6px 32px rgba(30,21,9,0.12);
+    --shadow-lg:   0 16px 64px rgba(30,21,9,0.16);
+    --radius:      2px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
 
-  /* ── SKIP LINK ── */
+  /* ════════════════════════════════════════
+     SKIP LINK
+  ════════════════════════════════════════ */
   .skip-link {
     position: absolute;
     top: -100%;
     left: 0;
     background: var(--gold);
-    color: var(--black);
-    padding: 10px 20px;
+    color: var(--ink);
+    padding: 12px 24px;
     font-family: 'Lato', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    letter-spacing: 1px;
     z-index: 10000;
     text-decoration: none;
     transition: top 0.2s;
   }
   .skip-link:focus { top: 0; }
 
-  /* ── FOCUS VISIBLE ── */
   :focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
   }
 
+  /* ════════════════════════════════════════
+     BASE
+  ════════════════════════════════════════ */
   body {
-    background: var(--black);
-    color: var(--white);
+    background: var(--cream);
+    color: var(--ink);
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.75;
     overflow-x: hidden;
   }
 
-  /* ── GRAIN OVERLAY ── */
+  /* Subtle paper texture */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
-    z-index: 999;
-    opacity: 0.4;
+    z-index: 0;
   }
 
-  /* ── GOLD LINE ── */
-  .gold-line {
-    width: 48px;
+  /* ════════════════════════════════════════
+     ORNAMENTS
+  ════════════════════════════════════════ */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+  }
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto;
+    background: var(--gold-line);
   }
-  .gold-line-left { margin: 0; }
+  .divider--left::before { display: none; }
+  .divider-gem {
+    width: 7px; height: 7px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .divider-text {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
 
-  /* ── NAV ── */
+  /* ════════════════════════════════════════
+     NAV
+  ════════════════════════════════════════ */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 60px;
+    z-index: 200;
+    padding: 0 64px;
+    height: 68px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.0) 100%);
-    backdrop-filter: blur(4px);
+    justify-content: space-between;
+    background: rgba(250,246,239,0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gold-line);
+    box-shadow: var(--shadow-sm);
   }
 
   .nav-brand {
     font-family: 'Cinzel', serif;
     font-size: 13px;
-    letter-spacing: 4px;
-    color: var(--gold);
+    letter-spacing: 5px;
+    color: var(--ink);
     text-transform: uppercase;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-brand-gem {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    display: inline-block;
   }
 
   .nav-links {
     display: flex;
-    gap: 36px;
+    gap: 40px;
     list-style: none;
   }
-
   .nav-links a {
     font-family: 'Lato', sans-serif;
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: var(--white-soft);
+    color: var(--ink-muted);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.25s;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s, border-color 0.25s;
   }
   .nav-links a:hover,
-  .nav-links a.nav-active { color: var(--gold); }
+  .nav-links a.nav-active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
 
-  /* ── HAMBURGER ── */
   .nav-hamburger {
     display: none;
     flex-direction: column;
@@ -154,8 +197,8 @@
     border: none;
     cursor: pointer;
     padding: 8px;
-    min-width: 44px;
-    min-height: 44px;
+    min-width: 48px;
+    min-height: 48px;
     align-items: center;
     justify-content: center;
   }
@@ -163,8 +206,8 @@
     display: block;
     width: 22px;
     height: 2px;
-    background: var(--gold);
-    transition: all 0.3s ease;
+    background: var(--ink);
+    transition: all 0.3s;
   }
   .nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -174,718 +217,812 @@
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(10,10,10,0.98);
-    z-index: 99;
+    background: rgba(250,246,239,0.98);
+    z-index: 199;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 44px;
     list-style: none;
   }
   .nav-mobile.open { display: flex; }
   .nav-mobile a {
-    font-family: 'Cinzel', serif;
-    font-size: 18px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--ink);
     text-decoration: none;
-    transition: color 0.3s;
+    letter-spacing: 2px;
+    transition: color 0.25s;
   }
   .nav-mobile a:hover { color: var(--gold); }
 
-  /* ── HERO ── */
+  /* ════════════════════════════════════════
+     HERO
+  ════════════════════════════════════════ */
   .hero {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 68px 0 0;
     position: relative;
     overflow: hidden;
   }
 
-  .hero-bg {
+  .hero-left {
+    padding: 80px 64px 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-right {
+    background: var(--parchment);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-right-pattern {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
-      var(--black);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, var(--gold-line) 39px, var(--gold-line) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, var(--gold-line) 39px, var(--gold-line) 40px);
+    opacity: 0.6;
   }
 
-  .hero-content {
+  .hero-right-circle {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid var(--gold-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
     position: relative;
-    max-width: 760px;
-    text-align: center;
-    animation: fadeInUp 1s ease forwards;
+    z-index: 1;
+    box-shadow: var(--shadow-md);
   }
 
-  .hero-label {
-    display: inline-block;
+  .hero-right-circle::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-line);
+  }
+
+  .hero-circle-icon {
+    font-size: 72px;
+    line-height: 1;
+  }
+
+  .hero-circle-label {
     font-family: 'Cinzel', serif;
     font-size: 10px;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .hero-eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-eyebrow-text {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
     color: var(--gold);
     text-transform: uppercase;
-    border: 1px solid rgba(201,168,76,0.25);
-    padding: 8px 20px;
-    margin-bottom: 40px;
   }
 
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(44px, 7vw, 84px);
+    font-size: clamp(48px, 5.5vw, 80px);
     font-weight: 300;
     line-height: 1.05;
-    color: var(--white);
-    margin-bottom: 24px;
+    color: var(--ink);
+    margin-bottom: 28px;
   }
-
   .hero-title em {
     font-style: italic;
-    color: var(--gold-light);
+    color: var(--gold);
   }
-
-  .hero-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 32px 0;
-  }
-  .hero-divider::before,
-  .hero-divider::after {
-    content: '';
-    flex: 1;
-    max-width: 100px;
-    height: 1px;
-    background: rgba(201,168,76,0.2);
-  }
-  .hero-diamond {
-    width: 6px; height: 6px;
-    background: var(--gold);
-    transform: rotate(45deg);
-    flex-shrink: 0;
+  .hero-title strong {
+    font-weight: 600;
+    display: block;
   }
 
   .hero-desc {
-    font-size: 16px;
-    line-height: 1.9;
-    color: var(--white-soft);
-    max-width: 520px;
-    margin: 0 auto 48px;
-    letter-spacing: 0.2px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin-bottom: 48px;
   }
 
-  .hero-explore {
+  .hero-cta {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     font-family: 'Lato', sans-serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    transition: gap 0.3s;
-  }
-  .hero-explore:hover { gap: 20px; }
-  .hero-explore::after {
-    content: '→';
-    font-size: 14px;
-    transition: transform 0.3s;
-  }
-  .hero-explore:hover::after { transform: translateX(4px); }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: var(--gold-dim);
-    font-size: 9px;
+    font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    animation: bounce 2s infinite;
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--gold-faint);
+    border: 1px solid var(--gold);
+    padding: 16px 32px;
+    min-height: 52px;
+    transition: background 0.25s, transform 0.2s;
   }
-  .hero-scroll::after {
-    content: '';
-    width: 1px;
-    height: 36px;
-    background: linear-gradient(180deg, var(--gold-dim), transparent);
+  .hero-cta:hover {
+    background: var(--gold-pale);
+    transform: translateX(4px);
   }
+  .hero-cta-arrow {
+    font-size: 18px;
+    transition: transform 0.25s;
+  }
+  .hero-cta:hover .hero-cta-arrow { transform: translateX(6px); }
 
-  /* ── STATS ── */
+  /* ════════════════════════════════════════
+     STATS
+  ════════════════════════════════════════ */
   .stats {
-    background: var(--black-soft);
-    border-top: 1px solid rgba(201,168,76,0.12);
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-    padding: 40px 60px;
+    background: var(--ink);
+    padding: 48px 64px;
     display: flex;
     justify-content: center;
-    gap: 72px;
+    gap: 80px;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
   }
 
   .stat-item { text-align: center; }
 
   .stat-number {
-    font-family: 'Cinzel', serif;
-    font-size: 32px;
-    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold-bright);
     display: block;
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-
   .stat-label {
-    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--white-soft);
+    color: rgba(250,246,239,0.55);
   }
 
-  /* ── SECTION SHARED ── */
-  section { padding: 96px 60px; }
+  /* ════════════════════════════════════════
+     SECTIONS
+  ════════════════════════════════════════ */
+  section { padding: 100px 64px; position: relative; z-index: 1; }
 
-  .section-eyebrow {
+  .section-header { margin-bottom: 64px; }
+  .section-header--center { text-align: center; }
+  .section-header--center .section-desc { margin: 0 auto; }
+
+  .section-kicker {
     font-family: 'Cinzel', serif;
     font-size: 10px;
     letter-spacing: 5px;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 18px;
     display: block;
+    margin-bottom: 18px;
   }
 
   .section-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 4.5vw, 52px);
+    font-size: clamp(36px, 4vw, 56px);
     font-weight: 300;
-    line-height: 1.15;
-    color: var(--white);
-    margin-bottom: 16px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
   }
-  .section-title em { font-style: italic; color: var(--gold-light); }
+  .section-title em { font-style: italic; color: var(--gold); }
 
   .section-desc {
-    font-size: 15px;
-    line-height: 1.9;
-    color: var(--white-soft);
-    max-width: 520px;
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    max-width: 540px;
   }
 
-  /* ── CATEGORIES ── */
-  .categories {
-    background: var(--black-soft);
-    border-top: 1px solid rgba(201,168,76,0.08);
-  }
+  /* ════════════════════════════════════════
+     CATEGORIES
+  ════════════════════════════════════════ */
+  #categorias { background: var(--cream); }
 
-  .categories-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .categories-header {
-    text-align: center;
-    margin-bottom: 64px;
-  }
-
-  .categories-header .section-desc {
-    margin: 0 auto;
-  }
-
-  .categories-header .gold-line {
-    margin: 20px auto 0;
-  }
+  .categories-inner { max-width: 1280px; margin: 0 auto; }
 
   .cat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(201,168,76,0.06);
+    gap: 24px;
   }
 
   .cat-card {
-    background: var(--black-card);
-    padding: 44px 36px;
+    background: var(--white);
+    border: 1px solid var(--cream-mid);
+    padding: 40px 36px 36px;
     position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
   }
 
-  .cat-card::after {
+  .cat-card::before {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent);
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--gold);
+    transition: height 0.35s ease;
+  }
+  .cat-card:hover::before { height: 100%; }
+  .cat-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold-line);
+    transform: translateY(-3px);
   }
 
-  .cat-card:hover { background: rgba(201,168,76,0.03); }
+  .cat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--cream-dark);
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+    user-select: none;
+  }
 
   .cat-icon {
-    font-size: 28px;
+    font-size: 32px;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     line-height: 1;
   }
 
   .cat-count {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 3px;
-    color: var(--gold-dim);
+    color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 10px;
     display: block;
+    margin-bottom: 10px;
   }
 
   .cat-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
-    color: var(--white);
+    color: var(--ink);
     margin-bottom: 14px;
     line-height: 1.2;
   }
 
   .cat-desc {
-    font-size: 13.5px;
+    font-size: 15px;
     line-height: 1.75;
-    color: var(--white-soft);
+    color: var(--ink-soft);
     margin-bottom: 24px;
+    flex: 1;
   }
 
   .cat-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+    margin-bottom: 28px;
   }
-
   .cat-tag {
     font-family: 'Lato', sans-serif;
     font-size: 10px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--gold-dim);
-    border: 1px solid rgba(201,168,76,0.18);
-    padding: 4px 10px;
+    color: var(--ink-light);
+    background: var(--cream-dark);
+    padding: 5px 10px;
+    border-radius: var(--radius);
   }
 
-  /* ── HIGHLIGHT (featured content) ── */
-  .highlight {
-    max-width: 1200px;
+  .cat-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--gold-faint);
+    border: 1px solid var(--gold);
+    padding: 14px 24px;
+    min-height: 52px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .cat-btn:hover {
+    background: var(--gold-pale);
+    color: var(--ink);
+  }
+  .cat-btn-arrow { transition: transform 0.25s; }
+  .cat-btn:hover .cat-btn-arrow { transform: translateX(4px); }
+
+  /* ════════════════════════════════════════
+     TÉCNICAS EM DESTAQUE
+  ════════════════════════════════════════ */
+  #destaque {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--gold-line);
+    border-bottom: 1px solid var(--gold-line);
+  }
+
+  .destaque-inner {
+    max-width: 1280px;
     margin: 0 auto;
   }
 
-  .highlight-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 56px;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .highlight-grid {
+  .destaque-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 1px;
-    background: rgba(201,168,76,0.06);
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--gold-line);
+    border: 1px solid var(--gold-line);
+    margin-top: 0;
   }
 
   .hl-card {
-    background: var(--black);
-    padding: 40px 36px;
-    position: relative;
-    border: 1px solid rgba(201,168,76,0.08);
-    transition: border-color 0.3s;
+    background: var(--cream);
+    padding: 44px 40px;
   }
 
-  .hl-card:hover { border-color: rgba(201,168,76,0.22); }
-
-  .hl-card--featured {
-    padding: 48px 44px;
-  }
-
-  .hl-card--featured .hl-title {
-    font-size: 24px;
-  }
-
-  .hl-eyebrow {
+  .hl-kicker {
     font-family: 'Cinzel', serif;
     font-size: 9px;
     letter-spacing: 4px;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 24px;
   }
-
-  .hl-eyebrow::before {
+  .hl-kicker::before {
     content: '';
-    display: block;
-    width: 20px;
+    width: 18px;
     height: 1px;
     background: var(--gold);
+    display: block;
     flex-shrink: 0;
   }
 
   .hl-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    color: var(--white);
-    margin-bottom: 16px;
+    color: var(--ink);
+    margin-bottom: 18px;
     line-height: 1.3;
   }
 
   .hl-text {
-    font-size: 13.5px;
+    font-size: 15px;
     line-height: 1.8;
-    color: var(--white-soft);
-    margin-bottom: 24px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
   }
 
-  .hl-list {
+  .hl-steps {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 24px;
   }
-
-  .hl-list li {
-    font-size: 13px;
-    color: var(--white-soft);
-    line-height: 1.5;
+  .hl-steps li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
     padding-left: 20px;
     position: relative;
   }
-
-  .hl-list li::before {
+  .hl-steps li::before {
     content: '◆';
     position: absolute;
     left: 0;
     color: var(--gold);
     font-size: 7px;
-    top: 5px;
+    top: 6px;
   }
 
-  .hl-validity {
+  .hl-badge {
     display: inline-block;
     font-family: 'Cinzel', serif;
     font-size: 10px;
     letter-spacing: 2px;
     color: var(--gold);
     border-left: 2px solid var(--gold);
-    padding-left: 12px;
-    margin-top: 8px;
+    padding: 2px 0 2px 12px;
   }
 
-  /* ── TECHNIQUE STRIP ── */
-  .technique-strip {
-    background: var(--black-soft);
-    border-top: 1px solid rgba(201,168,76,0.1);
-    border-bottom: 1px solid rgba(201,168,76,0.1);
+  /* ════════════════════════════════════════
+     VALIDADES STRIP
+  ════════════════════════════════════════ */
+  .validades {
+    background: var(--ink);
+    padding: 0;
   }
 
-  .technique-strip-inner {
-    max-width: 1200px;
+  .validades-inner {
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0;
   }
 
-  .tech-item {
-    padding: 40px 32px;
-    border-right: 1px solid rgba(201,168,76,0.08);
+  .val-item {
+    padding: 44px 36px;
+    border-right: 1px solid rgba(250,246,239,0.06);
     text-align: center;
   }
+  .val-item:last-child { border-right: none; }
 
-  .tech-item:last-child { border-right: none; }
-
-  .tech-icon {
-    font-size: 28px;
+  .val-icon {
+    font-size: 32px;
     display: block;
     margin-bottom: 16px;
   }
 
-  .tech-title {
+  .val-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
-    color: var(--white);
-    margin-bottom: 8px;
-    line-height: 1.3;
+    color: var(--cream);
+    margin-bottom: 10px;
   }
 
-  .tech-detail {
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--white-soft);
-    letter-spacing: 0.2px;
+  .val-detail {
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(250,246,239,0.55);
+    margin-bottom: 14px;
   }
 
-  .tech-time {
+  .val-time {
     font-family: 'Cinzel', serif;
-    font-size: 11px;
-    color: var(--gold);
-    letter-spacing: 1px;
-    margin-top: 10px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--gold-bright);
     display: block;
   }
 
-  /* ── ABOUT ── */
-  .about-section {
-    border-top: 1px solid rgba(201,168,76,0.08);
-  }
+  /* ════════════════════════════════════════
+     SOBRE
+  ════════════════════════════════════════ */
+  #sobre { background: var(--cream); }
 
-  .about-inner {
-    max-width: 1100px;
+  .sobre-inner {
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 5fr 4fr;
+    gap: 96px;
     align-items: center;
   }
 
-  .about-text {}
+  .sobre-text .section-desc { margin-bottom: 32px; }
 
-  .about-text .section-desc { margin-bottom: 32px; }
-
-  .about-features {
+  .sobre-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     margin-top: 28px;
+    border-top: 1px solid var(--gold-line);
+    padding-top: 28px;
   }
-
-  .about-features li {
+  .sobre-list li {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    font-size: 14px;
-    color: var(--white-soft);
-    line-height: 1.65;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.7;
   }
-
-  .about-features li::before {
+  .sobre-list li::before {
     content: '◆';
     color: var(--gold);
-    font-size: 7px;
-    margin-top: 6px;
+    font-size: 8px;
+    margin-top: 7px;
     flex-shrink: 0;
   }
 
-  .about-visual {
+  .sobre-visual {
+    background: var(--parchment);
+    border: 1px solid var(--gold-line);
+    padding: 56px 48px;
     position: relative;
   }
-
-  .about-frame {
-    background: var(--black-card);
-    border: 1px solid rgba(201,168,76,0.15);
-    padding: 48px;
-    position: relative;
-  }
-
-  .about-frame::before {
+  .sobre-visual::before {
     content: '';
     position: absolute;
     inset: 10px;
-    border: 1px solid rgba(201,168,76,0.06);
+    border: 1px solid var(--gold-line);
     pointer-events: none;
   }
-
-  .about-quote {
+  .sobre-quote-mark {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
+    font-size: 96px;
     color: var(--gold);
-    opacity: 0.3;
-    line-height: 0.6;
+    opacity: 0.15;
+    line-height: 0.7;
     margin-bottom: 20px;
     display: block;
   }
-
-  .about-frame-text {
+  .sobre-quote {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 22px;
     font-style: italic;
     font-weight: 300;
-    line-height: 1.65;
-    color: var(--white-soft);
+    line-height: 1.7;
+    color: var(--ink-soft);
     margin-bottom: 28px;
   }
-
-  .about-frame-author {
+  .sobre-author {
     font-family: 'Cinzel', serif;
     font-size: 10px;
     letter-spacing: 3px;
-    color: var(--gold-dim);
+    color: var(--gold);
     text-transform: uppercase;
   }
 
-  /* ── EXPLORE CTA ── */
-  .explore-section {
-    text-align: center;
-    background: var(--black-soft);
-    border-top: 1px solid rgba(201,168,76,0.1);
-  }
-
-  .explore-inner {
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  .explore-ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 48px;
-  }
-
-  .explore-ornament-line {
-    flex: 1;
-    max-width: 60px;
-    height: 1px;
-    background: var(--gold-dim);
-  }
-
-  .explore-ornament-sym {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    color: var(--gold);
-  }
-
-  .explore-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 300;
-    line-height: 1.15;
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-
-  .explore-title em { font-style: italic; color: var(--gold-light); }
-
-  .explore-desc {
-    font-size: 15px;
-    line-height: 1.9;
-    color: var(--white-soft);
-    margin-bottom: 40px;
-  }
-
-  .explore-links {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .explore-link {
-    display: inline-block;
-    padding: 14px 32px;
-    border: 1px solid rgba(201,168,76,0.3);
-    color: var(--white-soft);
-    font-family: 'Lato', sans-serif;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-  .explore-link:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(201,168,76,0.04);
-  }
-
-  .explore-link--primary {
-    background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 50%, var(--gold-light) 100%);
-    color: var(--black);
-    border-color: transparent;
-    font-weight: 700;
-  }
-  .explore-link--primary:hover {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold));
-    color: var(--black);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(201,168,76,0.25);
-  }
-
-  /* ── FOOTER ── */
+  /* ════════════════════════════════════════
+     FOOTER
+  ════════════════════════════════════════ */
   footer {
-    background: var(--black);
-    border-top: 1px solid rgba(201,168,76,0.12);
-    padding: 56px 60px;
+    background: var(--ink);
+    padding: 60px 64px;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
   .footer-brand {
     font-family: 'Cinzel', serif;
     font-size: 16px;
     letter-spacing: 6px;
-    color: var(--gold);
-    margin-bottom: 14px;
+    color: var(--gold-bright);
     display: block;
+    margin-bottom: 12px;
   }
 
   .footer-tagline {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 15px;
-    color: var(--white-soft);
+    font-size: 17px;
+    color: rgba(250,246,239,0.5);
     margin-bottom: 28px;
   }
 
-  .footer-divider {
+  .footer-line {
     width: 48px;
     height: 1px;
-    background: var(--gold-dim);
+    background: var(--gold);
+    opacity: 0.3;
     margin: 0 auto 20px;
   }
 
   .footer-copy {
     font-size: 11px;
     letter-spacing: 2px;
-    color: rgba(255,255,255,0.25);
+    color: rgba(250,246,239,0.25);
     text-transform: uppercase;
   }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* ════════════════════════════════════════
+     MODAL PDF READER
+  ════════════════════════════════════════ */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30,21,9,0.82);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal-container {
+    background: var(--cream);
+    width: 92vw;
+    height: 90vh;
+    max-width: 1300px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gold-line);
+    position: relative;
+    animation: modalIn 0.3s ease;
   }
 
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(8px); }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--gold-line);
+    background: var(--white);
+    flex-shrink: 0;
+    gap: 16px;
+  }
+
+  .modal-title-block { display: flex; align-items: center; gap: 14px; }
+
+  .modal-title-icon { font-size: 22px; }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .modal-subtitle {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-top: 2px;
+  }
+
+  .modal-actions { display: flex; align-items: center; gap: 12px; }
+
+  .modal-open-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold-line);
+    padding: 10px 18px;
+    min-height: 44px;
+    transition: background 0.2s;
+  }
+  .modal-open-link:hover { background: var(--gold-faint); }
+
+  .modal-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: 1px solid var(--cream-mid);
+    cursor: pointer;
+    color: var(--ink-muted);
+    font-size: 20px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .modal-close:hover {
+    background: var(--cream-dark);
+    border-color: var(--ink-muted);
+    color: var(--ink);
+  }
+
+  .modal-body {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Fallback para mobile */
+  .modal-fallback {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 24px;
+    padding: 40px;
+    text-align: center;
+  }
+  .modal-fallback-icon { font-size: 56px; }
+  .modal-fallback-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .modal-fallback-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--gold-faint);
+    border: 1px solid var(--gold);
+    padding: 16px 32px;
+    min-height: 56px;
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+  .modal-fallback-btn:hover { background: var(--gold-pale); }
+
+  /* ════════════════════════════════════════
+     ANIMAÇÕES
+  ════════════════════════════════════════ */
   .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.65s ease, transform 0.65s ease;
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-delay-4 { transition-delay: 0.32s; }
 
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
-
-  /* ── REDUCED MOTION ── */
+  /* ════════════════════════════════════════
+     REDUCED MOTION
+  ════════════════════════════════════════ */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -896,396 +1033,486 @@
     html { scroll-behavior: auto; }
   }
 
-  /* ── RESPONSIVE 1024px ── */
+  /* ════════════════════════════════════════
+     RESPONSIVE 1024px
+  ════════════════════════════════════════ */
   @media (max-width: 1024px) {
-    nav { padding: 20px 32px; }
-    section { padding: 72px 32px; }
-    .hero { padding: 100px 32px 72px; }
-    .cat-grid { grid-template-columns: repeat(2, 1fr); }
-    .highlight-grid { grid-template-columns: 1fr; }
-    .hl-card--featured { padding: 40px 36px; }
-    .technique-strip-inner { grid-template-columns: repeat(2, 1fr); }
-    .tech-item:nth-child(2) { border-right: none; }
-    .tech-item:nth-child(3),
-    .tech-item:nth-child(4) { border-top: 1px solid rgba(201,168,76,0.08); }
-    .about-inner { grid-template-columns: 1fr; gap: 48px; }
-    .stats { gap: 40px; padding: 32px; }
+    nav { padding: 0 32px; }
+    section { padding: 80px 32px; }
+    .stats { padding: 40px 32px; gap: 48px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 80px 32px 60px; }
+    .hero-right { display: none; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .destaque-grid { grid-template-columns: 1fr; }
+    .validades-inner { grid-template-columns: repeat(2, 1fr); }
+    .val-item:nth-child(2) { border-right: none; }
+    .val-item:nth-child(3),
+    .val-item:nth-child(4) { border-top: 1px solid rgba(250,246,239,0.06); }
+    .sobre-inner { grid-template-columns: 1fr; gap: 48px; }
+    footer { padding: 48px 32px; }
   }
 
-  /* ── RESPONSIVE 640px ── */
+  /* ════════════════════════════════════════
+     RESPONSIVE 640px
+  ════════════════════════════════════════ */
   @media (max-width: 640px) {
-    nav { padding: 16px 20px; }
+    nav { padding: 0 20px; }
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
-    section { padding: 56px 20px; }
-    .hero { padding: 80px 20px 60px; }
+    section { padding: 60px 20px; }
+    .stats { gap: 28px; padding: 36px 20px; }
     .cat-grid { grid-template-columns: 1fr; }
-    .technique-strip-inner { grid-template-columns: 1fr; }
-    .tech-item { border-right: none; border-top: 1px solid rgba(201,168,76,0.08); }
-    .tech-item:first-child { border-top: none; }
-    .stats { gap: 24px; }
+    .validades-inner { grid-template-columns: 1fr; }
+    .val-item { border-right: none; border-top: 1px solid rgba(250,246,239,0.06); }
+    .val-item:first-child { border-top: none; }
     footer { padding: 40px 20px; }
-    .highlight-header { flex-direction: column; align-items: flex-start; }
+    .modal-container { width: 100%; height: 100%; border: none; }
+    .modal-body iframe { display: none; }
+    .modal-fallback { display: flex; }
   }
 </style>
 </head>
 <body>
-<a href="#conteudo-principal" class="skip-link">Pular para conteúdo</a>
+
+<a href="#conteudo-principal" class="skip-link">Pular para conteúdo principal</a>
 
 <header>
   <nav aria-label="Navegação principal">
-    <a href="#" class="nav-brand" aria-label="Tempero de Mamãe — início">Tempero de Mamãe</a>
+    <a href="#" class="nav-brand" aria-label="Tempero de Mamãe — início">
+      <span class="nav-brand-gem" aria-hidden="true"></span>
+      Tempero de Mamãe
+    </a>
     <ul class="nav-links">
       <li><a href="#categorias">Categorias</a></li>
-      <li><a href="#tecnicas">Técnicas</a></li>
+      <li><a href="#destaque">Técnicas</a></li>
       <li><a href="#sobre">Sobre</a></li>
     </ul>
-    <button class="nav-hamburger" aria-expanded="false" aria-label="Abrir menu">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="nav-hamburger" aria-expanded="false" aria-label="Abrir menu de navegação">
+      <span></span><span></span><span></span>
     </button>
   </nav>
-  <ul class="nav-mobile">
-    <li><a href="#categorias">Categorias</a></li>
-    <li><a href="#tecnicas">Técnicas</a></li>
-    <li><a href="#sobre">Sobre</a></li>
+  <ul class="nav-mobile" role="menu" aria-label="Menu de navegação">
+    <li role="none"><a href="#categorias" role="menuitem">Categorias</a></li>
+    <li role="none"><a href="#destaque" role="menuitem">Técnicas</a></li>
+    <li role="none"><a href="#sobre" role="menuitem">Sobre</a></li>
   </ul>
 </header>
 
 <main id="conteudo-principal">
 
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-content">
-    <span class="hero-label">Base de Conhecimento · Temperos Artesanais</span>
-    <h1 class="hero-title">
-      Tudo sobre<br>
-      <em>temperos, molhos</em><br>
-      e negócio caseiro
-    </h1>
-    <div class="hero-divider" aria-hidden="true"><span class="hero-diamond"></span></div>
-    <p class="hero-desc">
-      Receitas testadas, técnicas profissionais de conservação, estratégias de precificação e guias para montar seu negócio artesanal — reunidos em um só lugar.
-    </p>
-    <a href="#categorias" class="hero-explore">Explorar o conteúdo</a>
-  </div>
-  <div class="hero-scroll" aria-hidden="true">Rolar</div>
-</section>
-
-<!-- STATS -->
-<div class="stats" role="region" aria-label="Números da base de conhecimento">
-  <div class="stat-item reveal">
-    <span class="stat-number">281+</span>
-    <span class="stat-label">Receitas documentadas</span>
-  </div>
-  <div class="stat-item reveal reveal-delay-1">
-    <span class="stat-number">6</span>
-    <span class="stat-label">Categorias de conhecimento</span>
-  </div>
-  <div class="stat-item reveal reveal-delay-2">
-    <span class="stat-number">8</span>
-    <span class="stat-label">Guias completos</span>
-  </div>
-  <div class="stat-item reveal reveal-delay-3">
-    <span class="stat-number">7</span>
-    <span class="stat-label">Técnicas de conservação</span>
-  </div>
-</div>
-
-<!-- CATEGORIES -->
-<section class="categories" id="categorias">
-  <div class="categories-inner">
-    <div class="categories-header reveal">
-      <span class="section-eyebrow">Explore por tema</span>
-      <h2 class="section-title">Categorias de <em>Conhecimento</em></h2>
-      <p class="section-desc">
-        Cada categoria reúne receitas, técnicas e orientações práticas organizadas para consulta rápida.
+  <!-- ── HERO ── -->
+  <section class="hero" id="inicio" aria-label="Introdução">
+    <div class="hero-left">
+      <div class="hero-eyebrow" aria-hidden="true">
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-eyebrow-text">Base de Conhecimento</span>
+      </div>
+      <h1 class="hero-title">
+        <em>Temperos,</em> molhos<br>
+        <strong>e o negócio</strong><br>
+        que vive na cozinha
+      </h1>
+      <p class="hero-desc">
+        Receitas testadas, técnicas de conservação, precificação e tudo para transformar o conhecimento culinário em prática — ou em renda.
       </p>
-      <div class="gold-line" style="margin-top:20px"></div>
+      <a href="#categorias" class="hero-cta">
+        Explorar o conteúdo
+        <span class="hero-cta-arrow" aria-hidden="true">→</span>
+      </a>
     </div>
-
-    <div class="cat-grid">
-      <div class="cat-card reveal">
-        <span class="cat-icon" role="img" aria-label="Ervas e especiarias">🌿</span>
-        <span class="cat-count">100 receitas</span>
-        <h3 class="cat-title">Temperos & Blends Artesanais</h3>
-        <p class="cat-desc">Misturas e blends de especiarias para cozinha do dia a dia, do básico ao gourmet. Receitas com ingredientes acessíveis e resultado profissional.</p>
-        <div class="cat-tags">
-          <span class="cat-tag">Ervas secas</span>
-          <span class="cat-tag">Blends</span>
-          <span class="cat-tag">Temperos rápidos</span>
-        </div>
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-right-pattern"></div>
+      <div class="hero-right-circle">
+        <span class="hero-circle-icon">🫙</span>
+        <span class="hero-circle-label">Arte dos Temperos</span>
       </div>
+    </div>
+  </section>
 
-      <div class="cat-card reveal reveal-delay-1">
-        <span class="cat-icon" role="img" aria-label="Pote de molho">🫙</span>
-        <span class="cat-count">81 receitas</span>
-        <h3 class="cat-title">Molhos & Cremes</h3>
-        <p class="cat-desc">Molho branco, funghi, quatro queijos, piamontese, vinho branco e mais. Técnicas base e variações para massas, gratinados e pratos completos.</p>
-        <div class="cat-tags">
-          <span class="cat-tag">Molho branco</span>
-          <span class="cat-tag">Cremes</span>
-          <span class="cat-tag">Conservas</span>
-        </div>
+  <!-- ── STATS ── -->
+  <div class="stats" role="region" aria-label="Resumo do conteúdo disponível">
+    <div class="stat-item reveal">
+      <span class="stat-number">281+</span>
+      <span class="stat-label">Receitas documentadas</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <span class="stat-number">6</span>
+      <span class="stat-label">Categorias de conhecimento</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <span class="stat-number">8</span>
+      <span class="stat-label">Guias completos</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <span class="stat-number">7</span>
+      <span class="stat-label">Técnicas de conservação</span>
+    </div>
+  </div>
+
+  <!-- ── CATEGORIAS ── -->
+  <section id="categorias" aria-labelledby="cat-heading">
+    <div class="categories-inner">
+      <header class="section-header section-header--center reveal">
+        <span class="section-kicker">Explore por tema</span>
+        <h2 class="section-title" id="cat-heading">Categorias de <em>Conhecimento</em></h2>
+        <p class="section-desc">
+          Cada categoria reúne receitas, técnicas e orientações práticas. Clique em <strong>Ler agora</strong> para abrir o guia completo.
+        </p>
+      </header>
+
+      <div class="cat-grid">
+
+        <article class="cat-card reveal">
+          <span class="cat-num" aria-hidden="true">01</span>
+          <span class="cat-icon" role="img" aria-label="Ervas e especiarias">🌿</span>
+          <span class="cat-count">100 receitas</span>
+          <h3 class="cat-title">Temperos & Blends Artesanais</h3>
+          <p class="cat-desc">Misturas e blends de especiarias — do tempero caseiro simples ao gourmet. Receitas testadas com ingredientes acessíveis e resultado profissional.</p>
+          <div class="cat-tags">
+            <span class="cat-tag">Ervas secas</span>
+            <span class="cat-tag">Blends</span>
+            <span class="cat-tag">Gourmet</span>
+          </div>
+          <button class="cat-btn" data-pdf="docs/PDFs/100-temperos.pdf" data-title="100 Temperos Artesanais" data-icon="🌿" aria-label="Abrir guia: 100 Temperos Artesanais">
+            Ler agora <span class="cat-btn-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
+        <article class="cat-card reveal reveal-delay-1">
+          <span class="cat-num" aria-hidden="true">02</span>
+          <span class="cat-icon" role="img" aria-label="Pote de molho">🫙</span>
+          <span class="cat-count">81 receitas</span>
+          <h3 class="cat-title">Molhos & Cremes</h3>
+          <p class="cat-desc">Molho branco, funghi, quatro queijos, piamontese, vinho branco e mais. Técnicas base e variações para massas, gratinados e pratos completos.</p>
+          <div class="cat-tags">
+            <span class="cat-tag">Molho branco</span>
+            <span class="cat-tag">Cremes</span>
+            <span class="cat-tag">Conservas</span>
+          </div>
+          <button class="cat-btn" data-pdf="docs/PDFs/81-molhos.pdf" data-title="81 Molhos Incríveis" data-icon="🫙" aria-label="Abrir guia: 81 Molhos Incríveis">
+            Ler agora <span class="cat-btn-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
+        <article class="cat-card reveal reveal-delay-2">
+          <span class="cat-num" aria-hidden="true">03</span>
+          <span class="cat-icon" role="img" aria-label="Bandeira do Brasil">🇧🇷</span>
+          <span class="cat-count">Regionais brasileiros</span>
+          <h3 class="cat-title">Sabores do Brasil</h3>
+          <p class="cat-desc">Temperos típicos de cada região do país — ingredientes nativos, preparo simples e identidade cultural que preserva a tradição culinária brasileira.</p>
+          <div class="cat-tags">
+            <span class="cat-tag">Nordeste</span>
+            <span class="cat-tag">Sul</span>
+            <span class="cat-tag">Regional</span>
+          </div>
+          <button class="cat-btn" data-pdf="docs/PDFs/temperos-brasil.pdf" data-title="Temperos Caseiros do Brasil" data-icon="🇧🇷" aria-label="Abrir guia: Temperos Caseiros do Brasil">
+            Ler agora <span class="cat-btn-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
+        <article class="cat-card reveal">
+          <span class="cat-num" aria-hidden="true">04</span>
+          <span class="cat-icon" role="img" aria-label="Técnicas de congelamento">❄️</span>
+          <span class="cat-count">7 técnicas</span>
+          <h3 class="cat-title">Conservação & Armazenamento</h3>
+          <p class="cat-desc">Como guardar temperos secos e frescos, congelar em cubinhos, organizar estoque e preservar sabor e cor por mais tempo. Ideal para produção em lote.</p>
+          <div class="cat-tags">
+            <span class="cat-tag">Congelamento</span>
+            <span class="cat-tag">Estoque</span>
+            <span class="cat-tag">Validade</span>
+          </div>
+          <button class="cat-btn" data-pdf="docs/PDFs/tecnicas-congelamento.pdf" data-title="Técnicas de Conservação" data-icon="❄️" aria-label="Abrir guia: Técnicas de Conservação">
+            Ler agora <span class="cat-btn-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
+        <article class="cat-card reveal reveal-delay-1">
+          <span class="cat-num" aria-hidden="true">05</span>
+          <span class="cat-icon" role="img" aria-label="Calculadora de precificação">🧮</span>
+          <span class="cat-count">Guia de negócio</span>
+          <h3 class="cat-title">Precificação & Finanças</h3>
+          <p class="cat-desc">Como calcular o custo real de cada produto — ingredientes, embalagem, tempo e energia. Aprenda a aplicar margem adequada e montar uma tabela de preços sustentável.</p>
+          <div class="cat-tags">
+            <span class="cat-tag">Custo real</span>
+            <span class="cat-tag">Margem</span>
+            <span class="cat-tag">Tabela de preços</span>
+          </div>
+          <button class="cat-btn" data-pdf="docs/PDFs/como-precificar.pdf" data-title="Como Precificar" data-icon="🧮" aria-label="Abrir guia: Como Precificar">
+            Ler agora <span class="cat-btn-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
+        <article class="cat-card reveal reveal-delay-2">
+          <span class="cat-num" aria-hidden="true">06</span>
+          <span class="cat-icon" role="img" aria-label="Etiqueta de produto">🏷️</span>
+          <span class="cat-count">Identidade + negócio</span>
+          <h3 class="cat-title">Marca, Rótulos & Vendas</h3>
+          <p class="cat-desc">Rótulos prontos para imprimir, dicas de embalagem e como criar identidade visual. Estratégias de venda pelo WhatsApp e redes sociais para crescer do zero.</p>
+          <div class="cat-tags">
+            <span class="cat-tag">Rótulos</span>
+            <span class="cat-tag">WhatsApp</span>
+            <span class="cat-tag">Branding</span>
+          </div>
+          <button class="cat-btn" data-pdf="docs/PDFs/rotulos-prontos.pdf" data-title="Marca, Rótulos e Vendas" data-icon="🏷️" aria-label="Abrir guia: Marca, Rótulos e Vendas">
+            Ler agora <span class="cat-btn-arrow" aria-hidden="true">→</span>
+          </button>
+        </article>
+
       </div>
+    </div>
+  </section>
 
-      <div class="cat-card reveal reveal-delay-2">
-        <span class="cat-icon" role="img" aria-label="Bandeira do Brasil">🇧🇷</span>
-        <span class="cat-count">Regionais brasileiros</span>
-        <h3 class="cat-title">Sabores do Brasil</h3>
-        <p class="cat-desc">Temperos típicos de cada região do país. Receitas com identidade cultural, ingredientes nativos e preparo simples que preservam a tradição.</p>
-        <div class="cat-tags">
-          <span class="cat-tag">Nordeste</span>
-          <span class="cat-tag">Sul</span>
-          <span class="cat-tag">Centro-Oeste</span>
+  <!-- ── TÉCNICAS EM DESTAQUE ── -->
+  <section id="destaque" aria-labelledby="destaque-heading">
+    <div class="destaque-inner">
+      <header class="section-header reveal">
+        <span class="section-kicker">Conteúdo em destaque</span>
+        <h2 class="section-title" id="destaque-heading">Técnicas que <em>fazem diferença</em></h2>
+        <p class="section-desc">Orientações práticas retiradas diretamente dos guias para aplicar hoje na sua cozinha.</p>
+      </header>
+      <div class="destaque-grid">
+
+        <div class="hl-card reveal">
+          <span class="hl-kicker">Molhos · Técnica base</span>
+          <h3 class="hl-title">Molho Branco Clássico — a base de tudo</h3>
+          <p class="hl-text">Dominar o molho branco abre portas para dezenas de preparações. Lasanhas, gratinados, massas e cremes — tudo começa aqui.</p>
+          <ol class="hl-steps" aria-label="Passo a passo do molho branco">
+            <li>Aqueça 1 litro de leite com ½ cebola, 5 cravos e 1 folha de louro. Retire os aromáticos antes de usar.</li>
+            <li>Prepare o roux: derreta 3 colheres de manteiga, adicione 3 colheres de farinha e mexa por 2 minutos em fogo baixo.</li>
+            <li>Adicione o leite aos poucos com um fouet, mexendo sempre para não formar grumos.</li>
+            <li>Cozinhe em fogo baixo por 30 min até engrossar. Finalize com sal e noz-moscada ralada na hora.</li>
+          </ol>
+          <span class="hl-badge">Base para gratinados, lasanhas e molhos especiais</span>
         </div>
+
+        <div class="hl-card reveal reveal-delay-1">
+          <span class="hl-kicker">Conservação · Secos</span>
+          <h3 class="hl-title">Como guardar temperos secos corretamente</h3>
+          <p class="hl-text">Longe de luz, calor e umidade — esse é o princípio básico para preservar aroma e força dos temperos secos por até um ano.</p>
+          <ul class="hl-steps" aria-label="Dicas de armazenamento seco">
+            <li>Use potes de vidro ou plástico com vedação firme</li>
+            <li>Guarde em armário fechado, longe do fogão</li>
+            <li>Nunca abra o pote perto de vapor ou calor</li>
+            <li>Prefira porções menores a potes muito grandes</li>
+            <li>Coloque sachê de sílica alimentar para umidade</li>
+          </ul>
+          <span class="hl-badge">Validade média: 6 meses a 1 ano</span>
+        </div>
+
+        <div class="hl-card reveal reveal-delay-2">
+          <span class="hl-kicker">Conservação · Congelamento</span>
+          <h3 class="hl-title">Cubinhos congelados: sem desperdício</h3>
+          <p class="hl-text">A técnica dos cubinhos reduz desperdício e deixa o tempero sempre pronto para ir direto à panela — sem descongelar na pia.</p>
+          <ul class="hl-steps" aria-label="Técnica dos cubinhos">
+            <li>Pique ou processe os temperos frescos</li>
+            <li>Distribua nas forminhas de gelo com fio de azeite</li>
+            <li>Congele por 6 horas, transfira para saco com etiqueta e data</li>
+            <li>Use direto na panela quente — nunca recongele</li>
+          </ul>
+          <span class="hl-badge">Validade: 3 a 4 meses</span>
+        </div>
+
       </div>
+    </div>
+  </section>
 
-      <div class="cat-card reveal">
-        <span class="cat-icon" role="img" aria-label="Floco de neve representando congelamento">❄️</span>
-        <span class="cat-count">7 técnicas</span>
-        <h3 class="cat-title">Conservação & Armazenamento</h3>
-        <p class="cat-desc">Como armazenar temperos secos e frescos, congelar em cubinhos, organizar estoque e manter sabor e cor por mais tempo. Técnicas para produção em lote.</p>
-        <div class="cat-tags">
-          <span class="cat-tag">Congelamento</span>
-          <span class="cat-tag">Estoque</span>
-          <span class="cat-tag">Validade</span>
-        </div>
+  <!-- ── VALIDADES STRIP ── -->
+  <div class="validades" role="region" aria-label="Guia rápido de validades por método">
+    <div class="validades-inner">
+      <div class="val-item reveal">
+        <span class="val-icon" role="img" aria-label="Pote fechado">🫙</span>
+        <div class="val-title">Temperos Secos</div>
+        <div class="val-detail">Pote bem fechado, armário escuro, longe do fogão e de qualquer vapor.</div>
+        <span class="val-time">Até 12 meses</span>
       </div>
-
-      <div class="cat-card reveal reveal-delay-1">
-        <span class="cat-icon" role="img" aria-label="Calculadora para precificação">🧮</span>
-        <span class="cat-count">Guia de negócio</span>
-        <h3 class="cat-title">Precificação & Finanças</h3>
-        <p class="cat-desc">Como calcular o custo real de cada produto (ingredientes, embalagem, tempo, energia), aplicar margem adequada e montar uma tabela de preços sustentável.</p>
-        <div class="cat-tags">
-          <span class="cat-tag">Custo real</span>
-          <span class="cat-tag">Margem</span>
-          <span class="cat-tag">Tabela de preços</span>
-        </div>
+      <div class="val-item reveal reveal-delay-1">
+        <span class="val-icon" role="img" aria-label="Folhas frescas">🌱</span>
+        <div class="val-title">Ervas Frescas</div>
+        <div class="val-detail">Secar bem, papel-toalha dentro do pote, gaveta de verduras da geladeira.</div>
+        <span class="val-time">5 a 7 dias</span>
       </div>
-
-      <div class="cat-card reveal reveal-delay-2">
-        <span class="cat-icon" role="img" aria-label="Etiqueta de produto">🏷️</span>
-        <span class="cat-count">Identidade visual + negócio</span>
-        <h3 class="cat-title">Marca, Rótulos & Vendas</h3>
-        <p class="cat-desc">Rótulos prontos para imprimir, dicas de embalagem, criação de identidade visual e estratégia de vendas pelo WhatsApp e redes sociais.</p>
-        <div class="cat-tags">
-          <span class="cat-tag">Rótulos</span>
-          <span class="cat-tag">WhatsApp</span>
-          <span class="cat-tag">Branding</span>
-        </div>
+      <div class="val-item reveal reveal-delay-2">
+        <span class="val-icon" role="img" aria-label="Cubinho de gelo">🧊</span>
+        <div class="val-title">Cubinhos Congelados</div>
+        <div class="val-detail">Processar com azeite, formar cubinhos, transferir para saco vedado com etiqueta.</div>
+        <span class="val-time">3 a 4 meses</span>
+      </div>
+      <div class="val-item reveal reveal-delay-3">
+        <span class="val-icon" role="img" aria-label="Alho e cebola">🧄</span>
+        <div class="val-title">Alho & Cebola</div>
+        <div class="val-detail">Alho batido com óleo em potes pequenos. Cebola em camada fina no saco.</div>
+        <span class="val-time">1 a 2 meses</span>
       </div>
     </div>
   </div>
-</section>
 
-<!-- HIGHLIGHT — conteúdo em destaque -->
-<section id="destaque">
-  <div class="highlight">
-    <div class="highlight-header">
-      <div class="reveal">
-        <span class="section-eyebrow">Conteúdo em destaque</span>
-        <h2 class="section-title">Técnicas que <em>fazem diferença</em></h2>
-      </div>
-      <p class="section-desc reveal reveal-delay-1">
-        Orientações práticas extraídas diretamente dos guias para aplicar hoje na sua cozinha.
-      </p>
-    </div>
-
-    <div class="highlight-grid">
-      <!-- card grande -->
-      <div class="hl-card hl-card--featured reveal">
-        <span class="hl-eyebrow">Molhos · Técnica base</span>
-        <h3 class="hl-title">Como fazer o Molho Branco Clássico</h3>
-        <p class="hl-text">
-          O molho branco é a base de dezenas de preparações — lasanhas, gratinados, massas e cremes. Dominá-lo bem é essencial antes de avançar para as variações.
+  <!-- ── SOBRE ── -->
+  <section id="sobre" aria-labelledby="sobre-heading">
+    <div class="sobre-inner">
+      <div class="sobre-text reveal">
+        <span class="section-kicker">Sobre esta base</span>
+        <h2 class="section-title" id="sobre-heading">Conhecimento prático<br>para a <em>cozinha real</em></h2>
+        <div class="divider divider--left" aria-hidden="true" style="margin:20px 0 24px; max-width:200px;">
+          <span class="divider-gem"></span>
+          <span class="divider-text">Arte dos Temperos</span>
+        </div>
+        <p class="section-desc">
+          Esta base foi organizada para quem quer ir além das receitas básicas — seja para cozinhar melhor em casa ou para transformar esse conhecimento em um negócio artesanal consistente.
         </p>
-        <ul class="hl-list">
-          <li>Aqueça 1 litro de leite com meia cebola, 5 cravos e 1 folha de louro. Retire os aromáticos antes de usar.</li>
-          <li>Prepare o roux: derreta 3 colheres de manteiga, adicione 3 colheres de farinha e mexa por 2 minutos em fogo baixo.</li>
-          <li>Incorpore o leite aquecido aos poucos com um fouet, mexendo sempre para evitar grumos.</li>
-          <li>Cozinhe em fogo baixo por 30 minutos até engrossar. Finalize com sal e noz-moscada ralada na hora.</li>
+        <ul class="sobre-list">
+          <li>Receitas com ingredientes do cotidiano e técnicas acessíveis para qualquer nível</li>
+          <li>Guias de conservação baseados em práticas profissionais, adaptadas para a cozinha doméstica</li>
+          <li>Orientações de precificação para quem quer vender com margem real e sustentável</li>
+          <li>Sabores regionais brasileiros documentados com identidade e contexto cultural</li>
+          <li>Técnicas dos favoritos dos campeões do MasterChef Brasil como referência de qualidade</li>
         </ul>
-        <span class="hl-validity">Base para: gratinados, lasanhas, cremes e molhos especiais</span>
       </div>
-
-      <!-- card pequeno 1 -->
-      <div class="hl-card reveal reveal-delay-1">
-        <span class="hl-eyebrow">Conservação · Temperos secos</span>
-        <h3 class="hl-title">Armazenando temperos secos corretamente</h3>
-        <p class="hl-text">
-          Longe de luz, calor e umidade — esse é o princípio básico para preservar o aroma e a força dos temperos secos.
+      <div class="sobre-visual reveal reveal-delay-2">
+        <span class="sobre-quote-mark" aria-hidden="true">"</span>
+        <p class="sobre-quote">
+          O tempero certo não transforma só o sabor do prato — transforma a experiência de quem come e a vida de quem prepara.
         </p>
-        <ul class="hl-list">
-          <li>Use potes de vidro ou plástico com vedação adequada</li>
-          <li>Guarde em armário fechado, longe do fogão</li>
-          <li>Evite abrir o pote perto de vapor</li>
-          <li>Prefira porções menores a potes muito grandes</li>
-        </ul>
-        <span class="hl-validity">Validade média: 6 meses a 1 ano</span>
-      </div>
-
-      <!-- card pequeno 2 -->
-      <div class="hl-card reveal reveal-delay-2">
-        <span class="hl-eyebrow">Conservação · Congelamento</span>
-        <h3 class="hl-title">Congelando temperos frescos em cubinhos</h3>
-        <p class="hl-text">
-          A técnica dos cubinhos reduz desperdício e deixa o tempero sempre pronto para usar diretamente na panela.
-        </p>
-        <ul class="hl-list">
-          <li>Pique ou processe os temperos frescos</li>
-          <li>Distribua nas forminhas de gelo com fio de azeite</li>
-          <li>Congele por 6 horas, depois transfira para saco vedado</li>
-          <li>Use direto na panela — sem descongelar na pia</li>
-        </ul>
-        <span class="hl-validity">Validade: 3 a 4 meses</span>
+        <span class="sobre-author">Tempero de Mamãe · Base de Conhecimento</span>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- TECHNIQUE STRIP -->
-<div class="technique-strip" id="tecnicas" role="region" aria-label="Guia rápido de conservação">
-  <div class="technique-strip-inner">
-    <div class="tech-item reveal">
-      <span class="tech-icon" role="img" aria-label="Pote fechado">🫙</span>
-      <div class="tech-title">Temperos Secos</div>
-      <div class="tech-detail">Pote bem fechado, armário escuro, longe do fogão e do vapor.</div>
-      <span class="tech-time">Até 12 meses</span>
-    </div>
-    <div class="tech-item reveal reveal-delay-1">
-      <span class="tech-icon" role="img" aria-label="Folhas frescas">🌱</span>
-      <div class="tech-title">Ervas Frescas</div>
-      <div class="tech-detail">Secar bem, papel-toalha no pote, gaveta de verduras da geladeira.</div>
-      <span class="tech-time">5 a 7 dias</span>
-    </div>
-    <div class="tech-item reveal reveal-delay-2">
-      <span class="tech-icon" role="img" aria-label="Cubinho de gelo">🧊</span>
-      <div class="tech-title">Cubinhos Congelados</div>
-      <div class="tech-detail">Processe com azeite, forme em cubinhos, transfira para saco vedado com etiqueta.</div>
-      <span class="tech-time">3 a 4 meses</span>
-    </div>
-    <div class="tech-item reveal reveal-delay-3">
-      <span class="tech-icon" role="img" aria-label="Alho e cebola">🧄</span>
-      <div class="tech-title">Alho & Cebola</div>
-      <div class="tech-detail">Alho batido com óleo em potes pequenos. Cebola picada em camada fina no saco.</div>
-      <span class="tech-time">1 a 2 meses</span>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="about-section" id="sobre">
-  <div class="about-inner">
-    <div class="about-text reveal">
-      <span class="section-eyebrow">Sobre esta base</span>
-      <h2 class="section-title">Conhecimento prático<br>para a <em>cozinha real</em></h2>
-      <div class="gold-line gold-line-left" style="margin: 20px 0 28px;"></div>
-      <p class="section-desc">
-        Esta base de conhecimento foi organizada para quem quer ir além das receitas básicas — seja para cozinhar melhor em casa ou para transformar esse conhecimento em um negócio artesanal consistente.
-      </p>
-      <ul class="about-features">
-        <li>Receitas com ingredientes do cotidiano e técnicas acessíveis a qualquer nível</li>
-        <li>Guias de conservação baseados em práticas profissionais, adaptadas para a cozinha doméstica</li>
-        <li>Orientações de precificação e negócio para quem quer vender com margem real</li>
-        <li>Sabores regionais brasileiros documentados com identidade e contexto</li>
-        <li>Conteúdo dos favoritos dos campeões do MasterChef Brasil como referência de qualidade</li>
-      </ul>
-    </div>
-
-    <div class="about-visual reveal reveal-delay-2">
-      <div class="about-frame">
-        <span class="about-quote" aria-hidden="true">"</span>
-        <p class="about-frame-text">
-          O tempero certo não transforma só o sabor do prato — transforma a experiência de quem come. Esse é o princípio por trás de cada receita aqui documentada.
-        </p>
-        <span class="about-frame-author">Tempero de Mamãe · Base de Conhecimento</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPLORE -->
-<section class="explore-section">
-  <div class="explore-inner">
-    <div class="explore-ornament" aria-hidden="true">
-      <div class="explore-ornament-line"></div>
-      <span class="explore-ornament-sym">✦</span>
-      <div class="explore-ornament-line"></div>
-    </div>
-    <h2 class="explore-title reveal">
-      Por onde <em>começar?</em>
-    </h2>
-    <p class="explore-desc reveal reveal-delay-1">
-      Se você está aqui pela primeira vez, explore as categorias por ordem — do preparo à conservação, da precificação à identidade visual.
-    </p>
-    <div class="explore-links reveal reveal-delay-2">
-      <a href="#categorias" class="explore-link explore-link--primary">Ver todas as categorias</a>
-      <a href="#tecnicas" class="explore-link">Técnicas de conservação</a>
-      <a href="#destaque" class="explore-link">Conteúdo em destaque</a>
-    </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
   <span class="footer-brand">Tempero de Mamãe</span>
   <p class="footer-tagline">Base de conhecimento sobre temperos artesanais</p>
-  <div class="footer-divider"></div>
+  <div class="footer-line"></div>
   <p class="footer-copy">Conteúdo organizado com cuidado · Todos os direitos reservados</p>
 </footer>
 
+<!-- ── MODAL PDF READER ── -->
+<div class="modal-overlay" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-title-block">
+        <span class="modal-title-icon" id="modalIcon" aria-hidden="true"></span>
+        <div>
+          <div class="modal-title" id="modalTitle">Guia</div>
+          <div class="modal-subtitle">Tempero de Mamãe · Base de Conhecimento</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <a href="#" class="modal-open-link" id="modalLink" target="_blank" rel="noopener" aria-label="Abrir PDF em nova aba">
+          Abrir em nova aba ↗
+        </a>
+        <button class="modal-close" id="modalClose" aria-label="Fechar leitor">✕</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <iframe id="pdfFrame" title="Leitor de documento" loading="lazy"></iframe>
+      <div class="modal-fallback" id="modalFallback">
+        <span class="modal-fallback-icon" aria-hidden="true">📄</span>
+        <p class="modal-fallback-text">Seu dispositivo não suporta a visualização inline.<br>Toque no botão abaixo para abrir o guia.</p>
+        <a href="#" class="modal-fallback-btn" id="fallbackLink" target="_blank" rel="noopener">
+          Abrir o guia <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Hamburger menu
+  /* ── NAV HAMBURGER ── */
   const hamburger = document.querySelector('.nav-hamburger');
   const mobileMenu = document.querySelector('.nav-mobile');
 
   if (hamburger && mobileMenu) {
-    function openMenu() {
+    const openMenu = () => {
       mobileMenu.classList.add('open');
       hamburger.setAttribute('aria-expanded', 'true');
       hamburger.setAttribute('aria-label', 'Fechar menu');
-    }
-    function closeMenu() {
+      document.body.style.overflow = 'hidden';
+    };
+    const closeMenu = () => {
       mobileMenu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
-      hamburger.setAttribute('aria-label', 'Abrir menu');
-    }
-    hamburger.addEventListener('click', () => {
-      hamburger.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeMenu();
-    });
-    document.querySelectorAll('.nav-mobile a').forEach(a => {
-      a.addEventListener('click', closeMenu);
-    });
+      hamburger.setAttribute('aria-label', 'Abrir menu de navegação');
+      document.body.style.overflow = '';
+    };
+    hamburger.addEventListener('click', () =>
+      hamburger.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu()
+    );
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   }
 
-  // Scroll reveal
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
+  /* ── SCROLL REVEAL ── */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(r => revealObs.observe(r));
 
-  // Active nav link
+  /* ── NAV ACTIVE STATE ── */
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    navLinks.forEach(a => a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current));
+  }, { passive: true });
+
+  /* ── MODAL PDF READER ── */
+  const modal      = document.getElementById('pdfModal');
+  const pdfFrame   = document.getElementById('pdfFrame');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalIcon  = document.getElementById('modalIcon');
+  const modalLink  = document.getElementById('modalLink');
+  const fallbackLink = document.getElementById('fallbackLink');
+  const modalClose = document.getElementById('modalClose');
+  const modalFallback = document.getElementById('modalFallback');
+
+  let lastFocused = null;
+
+  function openModal(pdfPath, title, icon) {
+    lastFocused = document.activeElement;
+    modalTitle.textContent = title;
+    modalIcon.textContent  = icon;
+    modalLink.href         = pdfPath;
+    fallbackLink.href      = pdfPath;
+    pdfFrame.src           = pdfPath;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    pdfFrame.src = '';
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  /* Abrir via botões de card */
+  document.querySelectorAll('.cat-btn[data-pdf]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openModal(btn.dataset.pdf, btn.dataset.title, btn.dataset.icon);
     });
-    navLinks.forEach(a => {
-      a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current);
-    });
+  });
+
+  /* Fechar */
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  /* Trap focus no modal */
+  modal.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const focusable = modal.querySelectorAll('button, [href], iframe, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last  = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+    }
   });
 </script>
 </body>
