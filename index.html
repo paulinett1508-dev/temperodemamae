@@ -1420,6 +1420,20 @@
 </div>
 
 <script>
+  /* ── DEBUG MODE (?debug=true) ── */
+  const DEBUG = new URLSearchParams(location.search).has('debug');
+  const log = (...args) => { if (DEBUG) console.log('[TDM]', ...args); };
+  const warn = (...args) => { if (DEBUG) console.warn('[TDM]', ...args); };
+  const err = (...args) => { if (DEBUG) console.error('[TDM]', ...args); };
+
+  if (DEBUG) {
+    console.groupCollapsed('%c🌿 Tempero de Mamãe — Debug Mode', 'color:#b8902e;font-weight:700;font-size:13px');
+    console.log('Ambiente:', location.hostname === 'localhost' ? 'local' : location.hostname);
+    console.log('URL:', location.href);
+    console.log('User Agent:', navigator.userAgent);
+    console.groupEnd();
+  }
+
   /* ── NAV HAMBURGER ── */
   const hamburger = document.querySelector('.nav-hamburger');
   const mobileMenu = document.querySelector('.nav-mobile');
@@ -1430,12 +1444,14 @@
       hamburger.setAttribute('aria-expanded', 'true');
       hamburger.setAttribute('aria-label', 'Fechar menu');
       document.body.style.overflow = 'hidden';
+      log('nav → menu mobile aberto');
     };
     const closeMenu = () => {
       mobileMenu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
       hamburger.setAttribute('aria-label', 'Abrir menu de navegação');
       document.body.style.overflow = '';
+      log('nav → menu mobile fechado');
     };
     hamburger.addEventListener('click', () =>
       hamburger.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu()
@@ -1446,9 +1462,16 @@
 
   /* ── SCROLL REVEAL ── */
   const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        log('reveal → visível:', e.target.className.split(' ')[0], e.target.id || '');
+      }
+    });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(r => revealObs.observe(r));
+  const revealEls = document.querySelectorAll('.reveal');
+  log(`reveal → ${revealEls.length} elementos observados`);
+  revealEls.forEach(r => revealObs.observe(r));
 
   /* ── NAV ACTIVE STATE ── */
   const sections = document.querySelectorAll('section[id]');
@@ -1472,6 +1495,7 @@
   let lastFocused = null;
 
   function openModal(pdfPath, title, icon) {
+    log('modal → abrindo:', title, '| PDF:', pdfPath);
     lastFocused = document.activeElement;
     modalTitle.textContent = title;
     modalIcon.textContent  = icon;
@@ -1481,9 +1505,13 @@
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     modalClose.focus();
+
+    pdfFrame.onload = () => log('modal → iframe carregado com sucesso:', pdfPath);
+    pdfFrame.onerror = () => err('modal → falha ao carregar iframe:', pdfPath);
   }
 
   function closeModal() {
+    log('modal → fechado');
     modal.classList.remove('open');
     pdfFrame.src = '';
     document.body.style.overflow = '';
@@ -1491,7 +1519,9 @@
   }
 
   /* Abrir via botões de card */
-  document.querySelectorAll('.cat-btn[data-pdf]').forEach(btn => {
+  const catBtns = document.querySelectorAll('.cat-btn[data-pdf]');
+  log(`modal → ${catBtns.length} botões de card registrados`);
+  catBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       openModal(btn.dataset.pdf, btn.dataset.title, btn.dataset.icon);
     });
