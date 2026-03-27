@@ -10,6 +10,7 @@
 <meta property="og:description" content="Guias práticos sobre temperos artesanais, molhos, conservação, precificação e negócio caseiro.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://temperodemamae.vercel.app/">
+<meta property="og:image" content="https://temperodemamae.vercel.app/assets/img/og-cover.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -21,6 +22,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
@@ -41,9 +43,22 @@
     --gold-pale:   #e8c97a;
     --gold-faint:  #f3e4b8;
     --gold-line:   rgba(184,144,46,0.25);
-    --gold-light:  #e8c97a;
     --white:       #ffffff;
     --white-soft:  #d4c9b0;
+
+    /* overlays & translucent */
+    --cream-glass:       rgba(250,246,239,0.96);
+    --cream-glass-solid: rgba(250,246,239,0.98);
+    --overlay-dark:      rgba(15,10,5,0.88);
+    --shadow-modal:      0 24px 80px rgba(0,0,0,0.5);
+    --shadow-canvas:     0 4px 32px rgba(0,0,0,0.2);
+    --gold-border-soft:  rgba(184,144,46,0.2);
+    --gold-border:       rgba(184,144,46,0.3);
+    --gold-bg-subtle:    rgba(184,144,46,0.1);
+    --gold-bg-soft:      rgba(184,144,46,0.12);
+    --gold-bg:           rgba(184,144,46,0.15);
+
+    /* shadows */
     --shadow-sm:   0 2px 12px rgba(30,21,9,0.08);
     --shadow-md:   0 6px 32px rgba(30,21,9,0.12);
     --shadow-lg:   0 16px 64px rgba(30,21,9,0.16);
@@ -81,6 +96,21 @@
 
   img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
+
+  /* ════════════════════════════════════════
+     UTILITIES
+  ════════════════════════════════════════ */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+  }
+
+  .stat-unit {
+    font-size: 0.5em;
+  }
 
   /* ════════════════════════════════════════
      SKIP LINK
@@ -172,7 +202,7 @@
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(250,246,239,0.96);
+    background: var(--cream-glass);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--gold-line);
@@ -244,7 +274,7 @@
       top: 64px;
       left: 0;
       right: 0;
-      background: rgba(250,246,239,0.98);
+      background: var(--cream-glass-solid);
       flex-direction: column;
       gap: 0;
       border-bottom: 1px solid var(--gold-line);
@@ -605,7 +635,7 @@
     position: fixed;
     inset: 0;
     z-index: 9000;
-    background: rgba(15,10,5,0.88);
+    background: var(--overlay-dark);
     align-items: center;
     justify-content: center;
   }
@@ -618,7 +648,7 @@
     height: 92vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow-modal);
     border: 1px solid var(--gold-line);
     overflow: hidden;
   }
@@ -629,7 +659,7 @@
     justify-content: space-between;
     padding: 0.85rem 1.25rem;
     background: var(--ink);
-    border-bottom: 1px solid rgba(184,144,46,0.2);
+    border-bottom: 1px solid var(--gold-border-soft);
     flex-shrink: 0;
     gap: 1rem;
   }
@@ -648,7 +678,7 @@
 
   .reader-close {
     background: none;
-    border: 1px solid rgba(184,144,46,0.3);
+    border: 1px solid var(--gold-border);
     color: var(--gold-pale);
     cursor: pointer;
     padding: 0.5rem 0.75rem;
@@ -673,7 +703,7 @@
 
   .reader-progress {
     height: 3px;
-    background: rgba(184,144,46,0.15);
+    background: var(--gold-bg);
     flex-shrink: 0;
   }
 
@@ -698,7 +728,7 @@
 
   #pdfCanvas {
     display: block;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-canvas);
     background: var(--white);
     max-width: 100%;
   }
@@ -774,7 +804,7 @@
     justify-content: space-between;
     padding: 0.75rem 1.25rem;
     background: var(--ink);
-    border-top: 1px solid rgba(184,144,46,0.15);
+    border-top: 1px solid var(--gold-bg);
     flex-shrink: 0;
     gap: 1rem;
     flex-wrap: wrap;
@@ -787,8 +817,8 @@
   }
 
   .reader-btn {
-    background: rgba(184,144,46,0.12);
-    border: 1px solid rgba(184,144,46,0.25);
+    background: var(--gold-bg-soft);
+    border: 1px solid var(--gold-line);
     color: var(--gold-pale);
     cursor: pointer;
     width: 44px;
@@ -824,8 +854,8 @@
   }
 
   .page-input {
-    background: rgba(184,144,46,0.1);
-    border: 1px solid rgba(184,144,46,0.25);
+    background: var(--gold-bg-subtle);
+    border: 1px solid var(--gold-line);
     color: var(--gold-pale);
     font-family: 'Cinzel', serif;
     font-size: 0.7rem;
@@ -841,7 +871,7 @@
 
   .page-input:focus {
     outline: 1px solid var(--gold);
-    background: rgba(184,144,46,0.15);
+    background: var(--gold-bg);
   }
 
   .zoom-controls {
@@ -940,7 +970,7 @@
           <span class="stat-label">Áreas de conhecimento</span>
         </div>
         <div>
-          <span class="stat-num">200<small style="font-size:0.5em">%</small></span>
+          <span class="stat-num">200<small class="stat-unit">%</small></span>
           <span class="stat-label">Margem possível</span>
         </div>
       </div>
@@ -1196,7 +1226,7 @@
       <div class="reader-nav">
         <button class="reader-btn" id="btnPrev" aria-label="Página anterior" disabled>&#8592;</button>
         <div class="page-info">
-          <label for="pageInput" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Ir para página</label>
+          <label for="pageInput" class="sr-only">Ir para página</label>
           <input type="number" id="pageInput" class="page-input" min="1" value="1" aria-label="Número da página atual">
           <span>/ <span id="totalPages">–</span></span>
         </div>
