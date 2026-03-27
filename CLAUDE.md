@@ -20,10 +20,20 @@ Mulheres que querem renda extra transformando conhecimento culinário em negóci
 
 | Token | Valor |
 |-------|-------|
-| `--black` | `#0a0a0a` |
-| `--gold` | `#c9a84c` |
-| `--gold-light` | `#e8c97a` |
-| `--white` | `#f5f0e8` |
+| `--cream` | `#faf6ef` |
+| `--cream-dark` | `#f0e9dc` |
+| `--cream-mid` | `#e8dece` |
+| `--parchment` | `#ede3d3` |
+| `--ink` | `#1e1509` |
+| `--ink-soft` | `#3d2e18` |
+| `--ink-muted` | `#6b5740` |
+| `--ink-light` | `#9c8468` |
+| `--gold` | `#b8902e` |
+| `--gold-bright` | `#d4a843` |
+| `--gold-pale` | `#e8c97a` |
+| `--gold-faint` | `#f3e4b8` |
+| `--gold-line` | `rgba(184,144,46,0.25)` |
+| `--white` | `#ffffff` |
 | `--white-soft` | `#d4c9b0` |
 
 **Fontes (Google Fonts):**
@@ -54,15 +64,13 @@ temperodemamae/
 
 ## Seções da Landing Page
 
-1. **Nav** — fixo no topo, link âncora para cada seção
-2. **Hero** — headline, subtítulo, CTA principal
-3. **Stats Strip** — 4 números de impacto
-4. **Sobre a Coleção** — proposta de valor + lista de benefícios
-5. **Os 8 Volumes** — grid com card de cada PDF
-6. **O que você vai aprender** — 6 pilares em grid
-7. **Depoimentos** — 3 cards com avatar, nome e localidade
-8. **CTA Final** — headline + 2 botões
-9. **Footer** — marca, tagline, copyright
+1. **Nav** — fixo no topo, link âncora para cada seção + toggle mobile
+2. **Hero** — headline, subtítulo, ornamento decorativo
+3. **Stats Strip** — 4 números de impacto (181 receitas, 8 guias, 6 áreas, 200% margem)
+4. **Categorias** — grid de 6 cards com leitor PDF integrado (PDF.js)
+5. **Técnicas** — 2 cards de técnicas especializadas
+6. **Sobre** — proposta de valor + tagline
+7. **Footer** — marca, tagline, copyright
 
 ---
 
