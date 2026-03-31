@@ -10,7 +10,10 @@
 <meta property="og:description" content="Guias práticos sobre temperos artesanais, molhos, conservação, precificação e negócio caseiro.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://temperodemamae.vercel.app/">
-<meta property="og:image" content="https://temperodemamae.vercel.app/assets/img/og-cover.jpg">
+<!-- og:image removido: asset assets/img/og-cover.jpg inexistente (ver audit H-01) -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tempero de Mamãe — Base de Conhecimento">
+<meta name="twitter:description" content="Guias práticos sobre temperos artesanais, molhos, conservação, precificação e negócio caseiro.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" crossorigin="anonymous"></script>
 <style>
   /* ════════════════════════════════════════
      TOKENS
@@ -63,7 +66,10 @@
     --shadow-md:   0 6px 32px rgba(30,21,9,0.12);
     --shadow-lg:   0 16px 64px rgba(30,21,9,0.16);
     --radius:      2px;
+    --nav-height:  64px;
   }
+
+  .no-scroll { overflow: hidden; }
 
   /* ════════════════════════════════════════
      RESET & BASE
@@ -213,7 +219,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: var(--nav-height);
     width: min(1160px, 92vw);
     margin-inline: auto;
   }
@@ -271,7 +277,7 @@
     .nav-links {
       display: none;
       position: absolute;
-      top: 64px;
+      top: var(--nav-height);
       left: 0;
       right: 0;
       background: var(--cream-glass-solid);
@@ -914,6 +920,7 @@
 
 <!-- SKIP LINK -->
 <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo</a>
+<noscript><p style="padding:2rem;text-align:center;font-family:sans-serif;">Este site requer JavaScript para funcionar corretamente. Por favor, ative o JavaScript no seu navegador.</p></noscript>
 
 <!-- NAV -->
 <header id="nav" role="banner">
@@ -1095,6 +1102,41 @@
           </button>
         </article>
 
+        <article class="cat-card reveal" aria-label="Segredos do MasterChef — abrir leitor">
+          <div class="cat-icon" role="img" aria-label="Troféu">🏆</div>
+          <h3 class="cat-title">Segredos do MasterChef</h3>
+          <p class="cat-desc">Os temperos favoritos dos ganhadores do MasterChef — técnicas e combinações dos campeões.</p>
+          <div class="cat-tags">
+            <span class="tag">MasterChef</span>
+            <span class="tag">Profissional</span>
+          </div>
+          <button class="cat-btn"
+                  data-pdf="docs/PDFs/masterchef-temperos.pdf"
+                  data-title="Temperos do MasterChef"
+                  aria-label="Abrir guia Segredos do MasterChef no leitor">
+            Ler agora
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </article>
+
+        <article class="cat-card reveal" aria-label="Rótulos Prontos — abrir leitor">
+          <div class="cat-icon" role="img" aria-label="Etiqueta de rótulo">🏷️</div>
+          <h3 class="cat-title">Rótulos Prontos</h3>
+          <p class="cat-desc">Rótulos profissionais prontos para imprimir — personalize e aplique nos seus produtos artesanais.</p>
+          <div class="cat-tags">
+            <span class="tag">Rótulos</span>
+            <span class="tag">Imprimir</span>
+            <span class="tag">Profissional</span>
+          </div>
+          <button class="cat-btn"
+                  data-pdf="docs/PDFs/rotulos-prontos.pdf"
+                  data-title="Rótulos Prontos"
+                  aria-label="Abrir guia Rótulos Prontos no leitor">
+            Ler agora
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </article>
+
       </div>
     </div>
   </section>
@@ -1176,7 +1218,7 @@
     <p class="footer-brand">Tempero de Mamãe</p>
     <p class="footer-tag">Saberes que ficam</p>
     <div class="footer-rule"></div>
-    <p class="footer-copy">&copy; 2025 Tempero de Mamãe — Todos os direitos reservados</p>
+    <p class="footer-copy">&copy; 2026 Tempero de Mamãe — Todos os direitos reservados</p>
   </div>
 </footer>
 
@@ -1217,7 +1259,7 @@
       <!-- Error state (built via DOM, never innerHTML with user data) -->
       <div class="reader-error" id="readerError" role="alert">
         <p class="reader-error-msg" id="readerErrorMsg">Não foi possível carregar o guia.</p>
-        <a id="readerErrorLink" href="#" download class="reader-error-link">Baixar PDF</a>
+        <a id="readerErrorLink" href="" download class="reader-error-link">Baixar PDF</a>
       </div>
       <canvas id="pdfCanvas" aria-label="Página do documento"></canvas>
     </div>
@@ -1420,7 +1462,7 @@ if (typeof pdfjsLib !== 'undefined') {
     lastFocused = document.activeElement;
     titleEl.textContent = title;
     modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('no-scroll');
     closeBtn.focus();
     log('Modal aberto:', title, '|', path);
     loadPDF(path, title);
@@ -1428,7 +1470,7 @@ if (typeof pdfjsLib !== 'undefined') {
 
   function closeModal() {
     modal.classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.classList.remove('no-scroll');
     if (lastFocused) lastFocused.focus();
     log('Modal fechado');
   }
