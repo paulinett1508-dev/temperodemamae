@@ -133,6 +133,28 @@ Todo componente novo e toda mudança no `index.html` deve passar pelos gates aba
 
 ---
 
+## Git Workflow
+
+### Branch Strategy
+- **Nunca** commitar direto na `main`. Sempre trabalhar em feature branches.
+- Branch de desenvolvimento atual é definida por sessão (ex: `claude/feature-name-XXXXX`).
+- Push automático é feito via hook `PostToolUse` — não é necessário rodar `git push` manualmente.
+
+### Commits
+- Commitar com frequência — mudanças pequenas e atômicas.
+- Usar **Conventional Commits**: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`, `style:`, `test:`.
+- Mensagem em português ou inglês, concisa e descritiva.
+
+### Auto-Push (Hook)
+O projeto usa um hook `PostToolUse` configurado em `.claude/settings.json` que:
+1. Detecta quando um `git commit` é executado via Bash.
+2. Faz `git push -u origin HEAD` automaticamente.
+3. Retry com backoff exponencial (2s → 4s → 8s → 16s) em caso de falha de rede.
+
+> **Importante:** O diretório `.claude/` está no `.gitignore` — o hook é local e não vai para o repositório. As regras de workflow ficam neste CLAUDE.md.
+
+---
+
 ## Próximas Features Planejadas
 
 - [ ] Modal/lightbox com preview de cada PDF
