@@ -1865,6 +1865,7 @@ if (typeof pdfjsLib !== 'undefined') {
     titleEl.textContent = opts.title;
     modal.classList.add('open');
     document.body.classList.add('no-scroll');
+    history.pushState({ readerOpen: true }, '');
     closeBtn.focus();
     log('Modal aberto:', opts.title);
 
@@ -1875,7 +1876,8 @@ if (typeof pdfjsLib !== 'undefined') {
     }
   }
 
-  function closeModal() {
+  function closeModal(fromPopstate) {
+    if (!modal.classList.contains('open')) return;
     modal.classList.remove('open');
     document.body.classList.remove('no-scroll');
     canvasWrap.classList.remove('text-mode');
@@ -1884,9 +1886,16 @@ if (typeof pdfjsLib !== 'undefined') {
     readerText.innerHTML = '';
     isTextMode = false;
     textPages = [];
+    if (!fromPopstate) history.back();
     if (lastFocused) lastFocused.focus();
-    log('Modal fechado');
+    log('Modal fechado', fromPopstate ? '(back button)' : '');
   }
+
+  window.addEventListener('popstate', function () {
+    if (modal.classList.contains('open')) {
+      closeModal(true);
+    }
+  });
 
   /* ── Card buttons ── */
   document.querySelectorAll('.cat-btn[data-pdf]').forEach(function (btn) {
