@@ -201,3 +201,21 @@ git add .
 git commit -m "feat: descrição da mudança"
 git push origin main
 ```
+
+## Uso de Subagents
+
+- Use subagents para pesquisa de referências visuais, análise de paleta e sugestões de copy em paralelo
+- Offload verificação de links, imagens quebradas e performance para subagents dedicados
+- Para a landing: subagent por seção (hero, produtos, depoimentos, CTA) ao trabalhar em paralelo
+
+## Verificação antes de Concluir
+
+- Nunca marque tarefa como concluída sem verificar o deploy Vercel + abertura em mobile (viewport 390px)
+- Checagem: nenhuma cor hardcoded fora dos tokens CSS, imagens com `alt`, CTAs funcionando
+- Pergunta padrão: *"Uma cliente do público-alvo entenderia o que fazer ao ver essa página?"*
+
+## Elegância (features não-triviais)
+
+- Para mudanças que tocam 3+ seções: pause e avalie consistência visual antes de implementar
+- Se o CSS está acumulando overrides: reestruturar usando os tokens já definidos no topo do arquivo
+- **Exceção:** ajustes de texto e cor pontuais — não criar abstração para 1 uso
