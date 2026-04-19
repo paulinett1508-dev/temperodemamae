@@ -1,3 +1,3 @@
-.claude/
+# .claude/ — removido para permitir agnostic-core skills layer
 .vercel/
 node_modules/
